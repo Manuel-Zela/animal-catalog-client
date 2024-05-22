@@ -1,0 +1,55 @@
+<div class="d-flex justify-content-center mt-5">
+  <div>
+    <tabset #staticTabs >
+      <tab heading="Dogs" >
+        <div class="container mt-4">
+          <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let dog of dogs">
+              <div class="card" style="width: 18rem;">
+                <img src="{{dog.image}}" class="card-img-top" alt="{{dog.name}}">
+                <div class="card-body">
+                  <h5 class="card-title">{{ dog.name }}</h5>
+                  <p class="card-text">Origin : {{ dog.origin }}</p>
+                  <a href="#" class="btn btn-outline-primary">Read More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </tab>
+      <tab heading="Cats">
+        <div class="container mt-4">
+          <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let cat of cats">
+              <div class="card" style="width: 18rem;">
+                <img src="{{cat.image}}" class="card-img-top" alt="{{cat.name}}">
+                <div class="card-body">
+                  <h5 class="card-title">{{ cat.name }}</h5>
+                  <p class="card-text">Origin : {{ cat.origin }}</p>
+                  <a href="#" class="btn btn-outline-primary">Read More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </tab>
+      <tab heading="Birds">
+        <div class="container mt-4">
+          <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let bird of birds">
+              <div class="card" style="width: 18rem;">
+                <img src="{{bird.image}}" class="card-img-top" alt="{{bird.name}}">
+                <div class="card-body">
+                  <h5 class="card-title">{{ bird.name }}</h5>
+                  <p class="card-text">Place of found  : {{ bird.place_of_found }}</p>
+                  <a href="#" class="btn btn-outline-primary">Read More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </tab>
+    </tabset>
+  </div>
+</div>
