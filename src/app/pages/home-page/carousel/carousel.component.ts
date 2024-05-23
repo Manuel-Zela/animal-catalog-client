@@ -1,26 +1,29 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import { DogsService } from "../../../services/dogs.service";
+import { AnimalService } from "../../../services/animal.service";
 import { Dogs } from "../../../models/dogs";
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { Router } from "@angular/router";
 import {NgForOf} from "@angular/common";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import { environment } from '../../../../environments/environments';
 import {TabsetComponent, TabsModule} from "ngx-bootstrap/tabs";
 import {Cats} from "../../../models/cats";
 import {Birds} from "../../../models/birds";
+import {CarouselModule} from "ngx-bootstrap/carousel";
+
 
 @Component({
   selector: 'app-animals',
   standalone: true,
   imports: [
     NgForOf,
-    TabsModule
+    TabsModule,
+    CarouselModule,
   ],
-  templateUrl:'./animals.component.html',
-  styleUrl: './animals.component.css'
+
+  templateUrl:'./carousel.component.html',
+  styleUrl: './carousel.component.css'
 })
-export class AnimalsComponent implements OnInit {
+
+export class CarouselComponent implements OnInit {
   dogs: Dogs[];
   cats:Cats[];
   birds:Birds[];
@@ -28,50 +31,40 @@ export class AnimalsComponent implements OnInit {
   @ViewChild('staticTabs', { static: false }) staticTabs?: TabsetComponent;
 
   constructor(
-    private dogsService: DogsService,
+    private animalService: AnimalService,
     private fb: FormBuilder,
-    private router: Router,
-    private modalService: NgbModal,
+
   ) {
     this.dogs = [];
     this.cats=[];
     this.birds=[];
   }
 
-  disableEnable() {
-    if (this.staticTabs?.tabs[2]) {
-      this.staticTabs.tabs[2].disabled = !this.staticTabs.tabs[2].disabled;
-    }
-  }
-
 
 
   ngOnInit() {
     this.initList();
-    this.searchform = this.fb.group({
-      name: [null]
-    });
   }
 
   initList() {
-    this.getDogs();
-    this.getCats();
-    this.getBirds();
+    this.get1Dogs();
+    this.get1Cats();
+    this.get1Birds();
   }
 
-  getDogs() {
-    this.dogsService.getDogs().subscribe({
+  get1Dogs() {
+    this.animalService.get1Dogs().subscribe({
       next: response => {
         this.dogs = response;
       },
       error: err => {
-        alert("Error reading list");
-      }
+        alert("Error reading dogs");
+        }
     });
   }
 
-  getCats() {
-    this.dogsService.getCats().subscribe({
+  get1Cats() {
+    this.animalService.get1Cats().subscribe({
       next: response => {
         this.cats = response;
       },
@@ -82,8 +75,8 @@ export class AnimalsComponent implements OnInit {
   }
 
 
-  getBirds() {
-    this.dogsService.getBirds().subscribe({
+  get1Birds() {
+    this.animalService.get1Birds().subscribe({
       next: response => {
         this.birds = response;
       },
@@ -92,6 +85,7 @@ export class AnimalsComponent implements OnInit {
       }
     });
   }
+
 
   protected readonly environment = environment;
 }

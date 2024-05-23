@@ -5,6 +5,7 @@ export interface Dogs {
   size?:  string,
   lifespan?:  string,
   origin?:  string,
+  colors:    string ,
   temperament?:  string,
   description?:  string,
   image?:   string,
