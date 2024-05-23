@@ -43,13 +43,13 @@ export class AnimalService {
 
 
   public get1Dogs() :Observable<Dogs[]> {
-    return this.httpClient.get<Dogs[]>(environment.apiBaseUrl + "v1/dogs?limit=1");}
+    return this.httpClient.get<Dogs[]>(environment.apiBaseUrl + "v1/dogs?limit=4");}
 
 
   public get1Cats() :Observable<Cats[]> {
-    return this.httpClient.get<Cats[]>(environment.apiBaseUrl + "v1/cats?limit=1");}
+    return this.httpClient.get<Cats[]>(environment.apiBaseUrl + "v1/cats?limit=4");}
 
   public get1Birds() :Observable<Birds[]> {
-    return this.httpClient.get<Birds[]>(environment.apiBaseUrl + "v1/birds?limit=1");}
+    return this.httpClient.get<Birds[]>(environment.apiBaseUrl + "v1/birds?limit=4");}
 
 }

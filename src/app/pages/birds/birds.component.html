@@ -18,9 +18,42 @@
         <div class="card-body">
           <h5 class="card-title">{{ bird.name }}</h5>
           <p class="card-text">Place of found  : {{ bird.place_of_found }}</p>
-          <a href="#" class="btn btn-outline-primary">Read More</a>
+          <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalBird" (click)="selectBird(bird)">Read More</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade bd-example-modal-lg" id="modalBird" tabindex="-1" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalDogsLabel">{{ selectedBird?.name }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" >
+          <img [src]="selectedBird?.image" class="img-fluid" alt="{{ selectedBird?.name }}">
+          <p><strong>Name : </strong>{{selectedBird?.name}}</p>
+          <p><strong>Species:</strong> {{ selectedBird?.species }}</p>
+          <p><strong>Family : </strong>{{ selectedBird?.family }}</p>
+          <p><strong>Habitat : </strong>{{ selectedBird?.habitat }}</p>
+          <p><strong>Place of found :</strong> {{ selectedBird?.place_of_found }}</p>
+          <p><strong>Diet :</strong> {{ selectedBird?.diet }}</p>
+          <p><strong>Weight kg :</strong> {{ selectedBird?.weight_kg }}</p>
+          <p><strong>Height cm :</strong> {{ selectedBird?.height_cm }}</p>
+          <p><strong>Description :</strong> {{ selectedBird?.description }}</p>
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div>
 </div>
+

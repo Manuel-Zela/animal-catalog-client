@@ -18,12 +18,18 @@ import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from "@angular
 export class CatsComponent implements OnInit{
   cats: Cats[];
   searchform! : FormGroup;
+  selectedCat: any;
 
   constructor(
     private animalService: AnimalService,
     private fb: FormBuilder
   ) {
     this.cats = [];
+    this.selectedCat = null;
+  }
+
+  selectCat(cat: any) {
+    this.selectedCat = cat;
   }
 
   ngOnInit() {

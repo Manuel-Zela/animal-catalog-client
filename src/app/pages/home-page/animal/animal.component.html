@@ -1,0 +1,77 @@
+
+<section id="dog" class="my-5 overflow-hidden">
+  <div class="container pb-5 " >
+
+    <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
+      <h3 class="display-3 fw-normal">Dogs</h3>
+      <div>
+        <a href="dogs" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+          View All Dogs </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let dog of dogs">
+        <div class="card" style="width: 18rem;">
+          <img src="{{dog.image}}" class="card-img-top" alt="{{dog.name}}">
+          <div class="card-body">
+            <h5 class="card-title">{{ dog.name }}</h5>
+            <p class="card-text">Origin : {{ dog.origin }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="cats" class="my-5 overflow-hidden">
+  <div class="container pb-5">
+
+    <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
+      <h3 class="display-3 fw-normal">Cats</h3>
+      <div>
+        <a href="/cats" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+          View All Cats </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let cat of cats">
+        <div class="card" style="width: 18rem;">
+          <img src="{{cat.image}}" class="card-img-top" alt="{{cat.name}}">
+          <div class="card-body">
+            <h5 class="card-title">{{ cat.name }}</h5>
+            <p class="card-text">Origin : {{ cat.origin }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="birds" class="my-5 overflow-hidden ">
+  <div class="container pb-5 ">
+
+    <div class=" d-flex justify-content-between   align-items-center mb-3">
+      <h3 class="display-3 fw-normal">Birds</h3>
+      <div>
+        <a href="/birds/" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1 ">
+          View All Birds </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8 col-md-7 col-lg-3 mb-4" *ngFor="let bird of birds">
+        <div class="card" style="width: 18rem;">
+          <img src="{{bird.image}}" class="card-img-top" alt="{{bird.name}}">
+          <div class="card-body">
+            <h5 class="card-title">{{ bird.name }}</h5>
+            <p class="card-text">Place of found : {{ bird.place_of_found }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

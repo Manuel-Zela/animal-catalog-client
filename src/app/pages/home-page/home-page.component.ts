@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {CarouselComponent} from "./carousel/carousel.component";
+import {AnimalComponent} from "./animal/animal.component";
 import {HttpClientModule} from "@angular/common/http";
 import {FormGroup} from "@angular/forms";
 
@@ -7,7 +7,7 @@ import {FormGroup} from "@angular/forms";
   selector: 'app-home-page',
   standalone: true,
   imports: [
-    CarouselComponent,HttpClientModule
+    AnimalComponent,HttpClientModule
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'

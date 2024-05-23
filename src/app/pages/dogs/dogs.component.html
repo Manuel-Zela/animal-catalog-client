@@ -18,11 +18,38 @@
   <div class="row">
     <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let dog of dogs">
       <div class="card" style="width: 18rem;">
-        <img src="{{dog.image}}" class="card-img-top" alt="{{dog.name}}">
+        <img [src]="dog.image" class="card-img-top" alt="{{dog.name}}">
         <div class="card-body">
           <h5 class="card-title">{{ dog.name }}</h5>
-          <p class="card-text">Origin : {{ dog.origin }}</p>
-          <button type="button" data-bs-toggle="modal" data-bs-target="#modalDogs" class="btn btn-outline-primary">Read More</button>
+          <p class="card-text">Origin: {{ dog.origin }}</p>
+          <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalDogs" (click)="selectDog(dog)">Read More</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade bd-example-modal-lg" id="modalDogs" tabindex="-1" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalDogsLabel">{{ selectedDog?.name }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" >
+          <img [src]="selectedDog?.image" class="img-fluid" alt="{{ selectedDog?.name }}">
+          <p><strong>Name : </strong>{{selectedDog?.name}}</p>
+          <p><strong>Breed group : </strong>{{selectedDog?.breed_group}}</p>
+          <p><strong>Origin:</strong> {{ selectedDog?.origin }}</p>
+          <p><strong>Size : </strong>{{ selectedDog?.size }}</p>
+          <p><strong>Lifespan : </strong>{{ selectedDog?.lifespan }}</p>
+          <p><strong>Temperament : </strong>{{ selectedDog?.temperament }}</p>
+          <p><strong>Colors : </strong>{{ selectedDog?.colors }}</p>
+          <p><strong>Description:</strong> {{ selectedDog?.description }}</p>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

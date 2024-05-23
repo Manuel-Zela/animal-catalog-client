@@ -19,11 +19,11 @@ import {CarouselModule} from "ngx-bootstrap/carousel";
     CarouselModule,
   ],
 
-  templateUrl:'./carousel.component.html',
-  styleUrl: './carousel.component.css'
+  templateUrl:'./animal.component.html',
+  styleUrl: './animal.component.css'
 })
 
-export class CarouselComponent implements OnInit {
+export class AnimalComponent implements OnInit {
   dogs: Dogs[];
   cats:Cats[];
   birds:Birds[];

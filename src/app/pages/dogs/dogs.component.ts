@@ -3,6 +3,7 @@ import {Dogs} from "../../models/dogs";
 import {AnimalService} from "../../services/animal.service";
 import {NgFor} from "@angular/common";
 import {FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {ModalModule} from "ngx-bootstrap/modal";
 
 @Component({
   selector: 'app-dogs',
@@ -17,12 +18,18 @@ import {FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
 export class DogsComponent implements OnInit{
   dogs: Dogs[];
   searchform! : FormGroup;
+  selectedDog: any;
 
   constructor(
     private animalService: AnimalService,
     private fb: FormBuilder
   ) {
     this.dogs = [];
+    this.selectedDog = null;
+  }
+
+  selectDog(dog: any) {
+    this.selectedDog = dog;
   }
 
   ngOnInit() {

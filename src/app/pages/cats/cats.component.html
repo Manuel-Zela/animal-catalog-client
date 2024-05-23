@@ -19,9 +19,34 @@
         <div class="card-body">
           <h5 class="card-title">{{ cat.name }}</h5>
           <p class="card-text">Origin : {{ cat.origin }}</p>
-          <a href="#" class="btn btn-outline-primary">Read More</a>
+          <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalCats" (click)="selectCat(cat)">Read More</button>
         </div>
       </div>
     </div>
   </div>
+
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="modalCats" tabindex="-1" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalDogsLabel">{{ selectedCat?.name }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" >
+          <img [src]="selectedCat?.image" class="img-fluid" alt="{{ selectedCat?.name }}">
+        <p><strong>Name : </strong>{{selectedCat?.name}}</p>
+        <p><strong>Origin:</strong> {{ selectedCat?.origin }}</p>
+        <p><strong>Temperament : </strong>{{ selectedCat?.temperament }}</p>
+        <p><strong>Colors : </strong>{{ selectedCat?.colors }}</p>
+        <p><strong>Description:</strong> {{ selectedCat?.description }}</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 </div>

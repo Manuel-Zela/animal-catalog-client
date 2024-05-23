@@ -4,7 +4,7 @@ import {HeaderComponent} from "./shared/header/header.component";
 import {FooterComponent} from "./shared/footer/footer.component";
 import {HomePageComponent} from "./pages/home-page/home-page.component";
 import {HttpClientModule} from "@angular/common/http";
-import {CarouselComponent} from "./pages/home-page/carousel/carousel.component";
+import {AnimalComponent} from "./pages/home-page/animal/animal.component";
 import {FormsModule} from "@angular/forms";
 import {CarouselModule} from "ngx-bootstrap/carousel";
 
@@ -12,7 +12,7 @@ import {CarouselModule} from "ngx-bootstrap/carousel";
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet , HeaderComponent , FooterComponent,HomePageComponent,
-    HttpClientModule,CarouselComponent,FormsModule , CarouselModule],
+    HttpClientModule,AnimalComponent,FormsModule , CarouselModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
