@@ -1,0 +1,27 @@
+<div class="container mt-4">
+
+  <section class="border p-4 mb-4 d-flex flex-column">
+    <div class="w-100 d-flex justify-content-between align-items-center">
+      <span class="fs-3">Cats</span>
+      <form class="d-flex" [formGroup]="searchform">
+        <div class="input-group">
+          <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" formControlName="name">
+          <button type="button" class="btn btn-outline-primary" (click)="searchCats()">Search</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let cat of cats">
+      <div class="card" style="width: 18rem;">
+        <img src="{{cat.image}}" class="card-img-top" alt="{{cat.name}}">
+        <div class="card-body">
+          <h5 class="card-title">{{ cat.name }}</h5>
+          <p class="card-text">Origin : {{ cat.origin }}</p>
+          <a href="#" class="btn btn-outline-primary">Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

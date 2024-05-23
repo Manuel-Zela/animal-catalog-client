@@ -1,0 +1,26 @@
+<div class="container mt-4">
+
+  <section class="border p-4 mb-4 d-flex flex-column">
+    <div class="w-100 d-flex justify-content-between align-items-center">
+      <span class="fs-3">Birds</span>
+      <form class="d-flex" [formGroup]="searchform">
+        <div class="input-group">
+          <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" formControlName="name">
+          <button type="button" class="btn btn-outline-primary" (click)="searchBirds()">Search</button>
+        </div>
+      </form>
+    </div>
+  </section>
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let bird of birds">
+      <div class="card" style="width: 18rem;">
+        <img src="{{bird.image}}" class="card-img-top" alt="{{bird.name}}">
+        <div class="card-body">
+          <h5 class="card-title">{{ bird.name }}</h5>
+          <p class="card-text">Place of found  : {{ bird.place_of_found }}</p>
+          <a href="#" class="btn btn-outline-primary">Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

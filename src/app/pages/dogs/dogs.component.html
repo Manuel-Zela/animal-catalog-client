@@ -1,0 +1,30 @@
+
+<div class="container mt-4">
+
+  <section class="border p-4 mb-4 d-flex flex-column">
+    <div class="w-100 d-flex justify-content-between align-items-center">
+      <span class="fs-3">Dogs</span>
+      <form class="d-flex" [formGroup]="searchform">
+        <div class="input-group">
+          <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" formControlName="name">
+          <button type="button" class="btn btn-outline-primary" (click)="searchDogs()">Search</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+
+
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let dog of dogs">
+      <div class="card" style="width: 18rem;">
+        <img src="{{dog.image}}" class="card-img-top" alt="{{dog.name}}">
+        <div class="card-body">
+          <h5 class="card-title">{{ dog.name }}</h5>
+          <p class="card-text">Origin : {{ dog.origin }}</p>
+          <button type="button" data-bs-toggle="modal" data-bs-target="#modalDogs" class="btn btn-outline-primary">Read More</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
