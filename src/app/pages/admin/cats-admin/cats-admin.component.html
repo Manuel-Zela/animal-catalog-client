@@ -1,0 +1,55 @@
+<div class="container my-5 container-fluid" xmlns="http://www.w3.org/1999/html">
+  <section class="border p-4 mb-4 d-flex flex-column">
+    <div class="w-100 d-flex justify-content-between align-items-center">
+      <span class="fs-3">Cats</span>
+      <button class="btn btn-md btn-outline-primary" >
+        <i class="fa fa-plus-square" ></i>New Cat
+      </button>
+      <form class="d-flex" [formGroup]="searchform">
+        <div class="input-group">
+          <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" formControlName="name">
+          <button type="button" class="btn btn-outline-primary" (click)="searchCats()">Search</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <div class="row">
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>ID </th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Image </th>
+        <th>Origin</th>
+        <th>Temperament</th>
+        <th>Colors</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let cats of cats " >
+        <td><span>{{ cats.id }}</span></td>
+        <td><span>{{ cats.name }}</span></td>
+        <td><span>{{ cats.description }}</span></td>
+        <td><img style="width: 3rem;" [src]="cats.image"/></td>
+        <td><span>{{ cats.origin }}</span></td>
+        <td><span>{{cats.temperament}}</span></td>
+        <td><span>{{cats.colors}}</span></td>
+
+        <td><span>
+        <button class="btn btn-sm btn-warning" >
+          <i class="fa fa-edit" ></i>Edit
+        </button>
+        <button class="btn btn-sm btn-danger"   >
+          <i class="fa fa-remove" ></i>Delete
+        </button>
+        </span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

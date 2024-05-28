@@ -1,0 +1,63 @@
+<div class="container my-5 container-fluid" xmlns="http://www.w3.org/1999/html">
+  <section class="border p-4 mb-4 d-flex flex-column">
+    <div class="w-100 d-flex justify-content-between align-items-center">
+      <span class="fs-3">Birds</span>
+      <button class="btn btn-md btn-outline-primary" >
+        <i class="fa fa-plus-square" ></i>New Bird
+      </button>
+      <form class="d-flex" [formGroup]="searchform">
+        <div class="input-group">
+          <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" formControlName="name">
+          <button type="button" class="btn btn-outline-primary" (click)="searchBirds()">Search</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <div class="row">
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>ID </th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Image </th>
+        <th>Species</th>
+        <th>Family</th>
+        <th>Habitat</th>
+        <th>Place of found</th>
+        <th>Diet</th>
+        <th>Weight kg</th>
+        <th>Height cm</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let bird of birds " >
+        <td><span>{{ bird.id }}</span></td>
+        <td><span>{{ bird.name }}</span></td>
+        <td><span>{{ bird.description }}</span></td>
+        <td><img style="width: 3rem;" [src]="bird.image"/></td>
+        <td><span>{{ bird.species }}</span></td>
+        <td><span>{{bird.family}}</span></td>
+        <td><span>{{bird.habitat}}</span></td>
+        <td><span>{{bird.place_of_found}}</span></td>
+        <td><span>{{bird.diet}}</span></td>
+        <td><span>{{bird.weight_kg}}</span></td>
+        <td><span>{{bird.height_cm}}</span></td>
+        <td><span>
+        <button class="btn btn-sm btn-warning" >
+          <i class="fa fa-edit" ></i>Edit
+        </button>
+        <button class="btn btn-sm btn-danger"   >
+          <i class="fa fa-remove" ></i>Delete
+        </button>
+        </span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
