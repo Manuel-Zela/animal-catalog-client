@@ -1,27 +1,45 @@
 # AnimalCatalogClient
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.7.
+## Overview
+This repository contains the frontend code for the Animal Catalog application. It is built using Angular framework and provides a user-friendly interface for managing animal data.
 
-## Development server
+## Technologies Used
+- **Framework**: Angular
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Getting Started
+To get started with the frontend development environment, follow these steps:
 
-## Code scaffolding
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/username/animal-catalog-client.git
+   cd animal-catalog-client
+Install Dependencies and Run the Application:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Install dependencies:
+bash
+Copy code
+npm install
+Start the Angular application:
+bash
+Copy code
+ng serve
+Access the Application:
 
-## Build
+Once the application is running, open a browser and go to http://localhost:4200 to access the frontend.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+**Screenshots**
 
-## Running unit tests
+**Home Page**
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![Home Page](screenshots/home_page.png)
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+**Admin Page**
 
-## Further help
+Add New Animal / Edit Animal / Delete Animal
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![Admin Page](screenshots/admin_page.png)
+
+
+Contact
+If you have any questions or suggestions regarding the frontend code, feel free to contact us at manuelzela30@gmail.com . 
