@@ -14,7 +14,7 @@
   <div class="row">
     <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let bird of birds">
       <div class="card" style="width: 18rem;">
-        <img src="{{bird.image}}" class="card-img-top" alt="{{bird.name}}">
+        <img [src]="environment.apiBaseUrl  + bird.imagePath " class="card-img-top" alt="{{bird.name}}">
         <div class="card-body">
           <h5 class="card-title">{{ bird.name }}</h5>
           <p class="card-text">Place of found  : {{ bird.place_of_found }}</p>
@@ -35,7 +35,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body" >
-          <img [src]="selectedBird?.image" class="img-fluid" alt="{{ selectedBird?.name }}">
+          <img [src]="environment.apiBaseUrl  + selectedBird?.imagePath " class="img-fluid" alt="{{ selectedBird?.name }}">
           <p><strong>Name : </strong>{{selectedBird?.name}}</p>
           <p><strong>Species:</strong> {{ selectedBird?.species }}</p>
           <p><strong>Family : </strong>{{ selectedBird?.family }}</p>

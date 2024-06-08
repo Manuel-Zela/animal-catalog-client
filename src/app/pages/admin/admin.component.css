@@ -1,9 +1,9 @@
 .nav-tabs .nav-link {
   border: 1px solid #dee2e6;
   border-radius: 0.25rem;
-  margin-right: 0.5rem;
+  margin-right: 0.8rem;
   font-size: 1.1rem;
-  padding: 0.75rem 1.25rem;
+  padding: 0.7rem 2.25rem;
 }
 
 .nav-tabs .nav-link.active {
@@ -16,4 +16,11 @@
   border: 1px solid #dee2e6;
   border-top: none;
   border-radius: 0 0 0.25rem 0.25rem;
+}
+.display-4 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+.custom-label{
+  margin: 120px 0 100px 0;
 }

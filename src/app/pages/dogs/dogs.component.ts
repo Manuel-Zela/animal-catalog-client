@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Dogs} from "../../models/dogs";
-import {AnimalService} from "../../services/animal.service";
 import {NgFor} from "@angular/common";
 import {FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
-import {ModalModule} from "ngx-bootstrap/modal";
+import {DogsService} from "../../services/dogs.service";
+import {environment} from "../../../environments/environments";
 
 @Component({
   selector: 'app-dogs',
@@ -21,7 +21,7 @@ export class DogsComponent implements OnInit{
   selectedDog: any;
 
   constructor(
-    private animalService: AnimalService,
+    private dogsService:DogsService,
     private fb: FormBuilder
   ) {
     this.dogs = [];
@@ -44,7 +44,7 @@ export class DogsComponent implements OnInit{
   }
 
   getDogs() {
-    this.animalService.getDogs().subscribe({
+    this.dogsService.getAllDogs("").subscribe({
       next: response => {
         this.dogs = response;
       },
@@ -58,7 +58,7 @@ export class DogsComponent implements OnInit{
   searchDogs(): void {
     const name = this.searchform.get('name')?.value;
     if (name) {
-      this.animalService.searchDogsName(name)
+      this.dogsService.searchDogsName(name)
         .subscribe(
           dogs => {
             console.log('Search Results:', dogs);
@@ -74,4 +74,6 @@ export class DogsComponent implements OnInit{
     }
   }
 
+
+  protected readonly environment = environment;
 }

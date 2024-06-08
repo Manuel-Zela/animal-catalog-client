@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForOf} from "@angular/common";
-import {AnimalService} from "../../services/animal.service";
 import {Birds} from "../../models/birds";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {environment} from "../../../environments/environments";
+import {BirdsService} from "../../services/birds.service";
 
 @Component({
   selector: 'app-birds',
@@ -21,7 +22,7 @@ export class BirdsComponent implements OnInit{
   selectedBird: any;
 
   constructor(
-    private animalService: AnimalService,
+    private birdsService: BirdsService,
     private fb: FormBuilder
   ) {
     this.birds = [];
@@ -40,12 +41,12 @@ export class BirdsComponent implements OnInit{
   }
 
   initList() {
-    this.getBirds();
+    this.getAllBirds();
   }
 
 
-  getBirds() {
-    this.animalService.getBirds().subscribe({
+  getAllBirds() {
+    this.birdsService.getAllBirds("").subscribe({
       next: response => {
         this.birds = response;
       },
@@ -59,7 +60,7 @@ export class BirdsComponent implements OnInit{
   searchBirds(): void {
     const name = this.searchform.get('name')?.value;
     if (name) {
-      this.animalService.searchBirdsName(name)
+      this.birdsService.searchBirdsName(name)
         .subscribe(
           birds => {
             console.log('Search Results:', birds);
@@ -71,8 +72,9 @@ export class BirdsComponent implements OnInit{
           }
         );
     } else {
-      this.getBirds();
+      this.getAllBirds();
     }
   }
 
+  protected readonly environment = environment;
 }

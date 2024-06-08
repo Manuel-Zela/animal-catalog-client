@@ -1,9 +1,9 @@
-<div class="container my-5 container-fluid" xmlns="http://www.w3.org/1999/html">
-  <section class="border p-4 mb-4 d-flex flex-column">
+<div class="container my-5">
+  <div class="border p-4 mb-5 d-flex flex-column">
     <div class="w-100 d-flex justify-content-between align-items-center">
       <span class="fs-3">Dogs</span>
-      <button class="btn btn-md btn-outline-primary" >
-        <i class="fa fa-plus-square" ></i>New Dog
+      <button class="btn btn-md btn-outline-primary" (click)="openCreateEdit(modalCreateEdit, emptyModel)">
+        <i class="fa fa-plus-square"></i> New Dog
       </button>
       <form class="d-flex" [formGroup]="searchform">
         <div class="input-group">
@@ -12,16 +12,14 @@
         </div>
       </form>
     </div>
-  </section>
-
-  <div class="row">
-  <table class="table table-bordered table-striped">
+  </div>
+  <table class="table table-bordered">
     <thead>
     <tr>
-      <th>ID </th>
+      <th>ID</th>
       <th>Name</th>
       <th>Description</th>
-      <th>Image </th>
+      <th>Image</th>
       <th>Origin</th>
       <th>Breed group</th>
       <th>Size</th>
@@ -32,58 +30,93 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let dog of dogs " >
-      <td><span>{{ dog.id }}</span></td>
-      <td><span>{{ dog.name }}</span></td>
-      <td><span>{{ dog.description }}</span></td>
-      <td><img style="width: 3rem;" [src]="dog.image"/></td>
-      <td><span>{{ dog.origin }}</span></td>
-      <td><span>{{ dog.breed_group }}</span></td>
-      <td><span>{{dog.size}}</span></td>
-      <td><span>{{dog.lifespan}}</span></td>
-      <td><span>{{dog.temperament}}</span></td>
-      <td><span>{{dog.colors}}</span></td>
-
-      <td><span>
-        <button class="btn btn-sm btn-warning" >
-          <i class="fa fa-edit" ></i>Edit
-        </button>
-        <button class="btn btn-sm btn-danger"   >
-          <i class="fa fa-remove" ></i>Delete
-        </button>
-        </span>
+    <tr *ngFor="let dog of dogs">
+      <td>{{ dog.id }}</td>
+      <td>{{ dog.name }}</td>
+      <td>{{ dog.description }}</td>
+      <td><img style="width: 3rem;" [src]="environment.apiBaseUrl  + dog.imagePath "></td>
+      <td>{{ dog.origin }}</td>
+      <td>{{ dog.breed_group }}</td>
+      <td>{{ dog.size }}</td>
+      <td>{{ dog.lifespan }}</td>
+      <td>{{ dog.temperament }}</td>
+      <td>{{ dog.colors }}</td>
+      <td>
+        <div class="btn-group">
+          <button class="btn btn-sm btn-warning me-2" (click)="openCreateEdit(modalCreateEdit, dog)">
+            <i class="fa fa-edit"></i> Edit
+          </button>
+          <button class="btn btn-sm btn-danger" (click)="openDelete(deleteDogs, dog)">
+            <i class="fa fa-remove"></i> Delete
+          </button>
+        </div>
       </td>
     </tr>
     </tbody>
   </table>
-
-</div>
 </div>
 
+<!-- Modal Create & Edit -->
+<ng-template #modalCreateEdit let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ model.id ? 'Edit Dog' : 'New Dog' }}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <form (ngSubmit)="create()" novalidate>
+    <div class="modal-body">
+      <div class="form-group mt-2">
+        <label>Name</label>
+        <div class="input-group">
+          <input id="name" name="name" class="form-control mb-1" [(ngModel)]="model.name" required>
+        </div>
 
-<!--&lt;!&ndash; Modal Create &ndash;&gt;-->
-<!--<div class="modal fade bd-example-modal-lg" id="modalDogs" tabindex="-1" aria-labelledby="myLargeModalLabel" aria-hidden="true">-->
-<!--  <div class="modal-dialog modal-lg">-->
-<!--    <div class="modal-content">-->
-<!--      <div class="modal-header">-->
-<!--        <h5 class="modal-title" id="modalDogsLabel">{{ selectedDog?.name }}</h5>-->
-<!--        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--      </div>-->
-<!--      <div class="modal-body" >-->
-<!--        <img [src]="selectedDog?.image" class="img-fluid" alt="{{ selectedDog?.name }}">-->
-<!--        <p><strong>Name : </strong>{{selectedDog?.name}}</p>-->
-<!--        <p><strong>Breed group : </strong>{{selectedDog?.breed_group}}</p>-->
-<!--        <p><strong>Origin:</strong> {{ selectedDog?.origin }}</p>-->
-<!--        <p><strong>Size : </strong>{{ selectedDog?.size }}</p>-->
-<!--        <p><strong>Lifespan : </strong>{{ selectedDog?.lifespan }}</p>-->
-<!--        <p><strong>Temperament : </strong>{{ selectedDog?.temperament }}</p>-->
-<!--        <p><strong>Colors : </strong>{{ selectedDog?.colors }}</p>-->
-<!--        <p><strong>Description:</strong> {{ selectedDog?.description }}</p>-->
+        <label>Breed group</label>
+        <input id="breed_group" name="breed_group" class="form-control mb-1" [(ngModel)]="model.breed_group" required>
 
-<!--      </div>-->
-<!--      <div class="modal-footer">-->
-<!--        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+        <label>Size</label>
+        <input id="size" name="size" class="form-control mb-1" [(ngModel)]="model.size" required>
+
+        <label>Lifespan</label>
+        <input id="lifespan" name="lifespan" class="form-control mb-1" [(ngModel)]="model.lifespan" required>
+
+        <label>Origin</label>
+        <input id="origin" name="origin" class="form-control mb-1" [(ngModel)]="model.origin" required>
+
+        <label>Temperament</label>
+        <input id="temperament" name="temperament" class="form-control mb-1" [(ngModel)]="model.temperament" required>
+
+        <label>Colors</label>
+        <input id="colors" name="colors" class="form-control mb-1" [(ngModel)]="model.colors" required>
+      </div>
+      <div class="form-group mt-1">
+        <label>Description</label>
+        <textarea class="form-control mb-3" name="description" id="description" rows="3" [(ngModel)]="model.description" required></textarea>
+      </div>
+      <div class="form-group mt-1">
+        <label>Image Product</label>
+        <input type="file" (change)="setImage($event, model)" class="form-control-file" id="image">
+        <div *ngIf="model && model.imageName">Actual image: {{model.imageName}}</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">Close</button>
+      <button type="submit" class="btn btn-info">Submit</button>
+    </div>
+  </form>
+</ng-template>
+
+
+<ng-template #deleteDogs let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Confirm Delete</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <h2>Are you sure you want to delete "{{ dogsToDelete?.name }}"?</h2>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-danger" (click)="onDelete()">Yes, Delete!</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cancel click')">Cancel</button>
+  </div>
+</ng-template>
+

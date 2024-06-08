@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForOf} from "@angular/common";
-import {AnimalService} from "../../services/animal.service";
 import {Cats} from "../../models/cats";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {environment} from "../../../environments/environments";
+import {CatsService} from "../../services/cats.service";
 
 @Component({
   selector: 'app-cats',
@@ -21,7 +22,7 @@ export class CatsComponent implements OnInit{
   selectedCat: any;
 
   constructor(
-    private animalService: AnimalService,
+    private catsService: CatsService,
     private fb: FormBuilder
   ) {
     this.cats = [];
@@ -45,7 +46,7 @@ export class CatsComponent implements OnInit{
 
 
   getCats() {
-    this.animalService.getCats().subscribe({
+    this.catsService.getAllCats("").subscribe({
       next: response => {
         this.cats = response;
       },
@@ -58,7 +59,7 @@ export class CatsComponent implements OnInit{
   searchCats(): void {
     const name = this.searchform.get('name')?.value;
     if (name) {
-      this.animalService.searchCatsName(name)
+      this.catsService.searchCatsName(name)
         .subscribe(
           cats => {
             console.log('Search Results:', cats);
@@ -74,4 +75,5 @@ export class CatsComponent implements OnInit{
     }
   }
 
+    protected readonly environment = environment;
 }

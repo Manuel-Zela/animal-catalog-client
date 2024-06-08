@@ -2,8 +2,8 @@
   <section class="border p-4 mb-4 d-flex flex-column">
     <div class="w-100 d-flex justify-content-between align-items-center">
       <span class="fs-3">Birds</span>
-      <button class="btn btn-md btn-outline-primary" >
-        <i class="fa fa-plus-square" ></i>New Bird
+      <button class="btn btn-md btn-outline-primary" (click)="openCreateEdit(modalCreateEdit, emptyModel)">
+        <i class="fa fa-plus-square"></i> New Bird
       </button>
       <form class="d-flex" [formGroup]="searchform">
         <div class="input-group">
@@ -14,7 +14,6 @@
     </div>
   </section>
 
-  <div class="row">
     <table class="table table-bordered table-striped">
       <thead>
       <tr>
@@ -37,7 +36,7 @@
         <td><span>{{ bird.id }}</span></td>
         <td><span>{{ bird.name }}</span></td>
         <td><span>{{ bird.description }}</span></td>
-        <td><img style="width: 3rem;" [src]="bird.image"/></td>
+        <td><img style="width: 3rem;" [src]="environment.apiBaseUrl  + bird.imagePath "></td>
         <td><span>{{ bird.species }}</span></td>
         <td><span>{{bird.family}}</span></td>
         <td><span>{{bird.habitat}}</span></td>
@@ -45,19 +44,84 @@
         <td><span>{{bird.diet}}</span></td>
         <td><span>{{bird.weight_kg}}</span></td>
         <td><span>{{bird.height_cm}}</span></td>
-        <td><span>
-        <button class="btn btn-sm btn-warning" >
+        <td>
+          <div class="btn-group">
+          <button class="btn btn-sm btn-warning me-2" (click)="openCreateEdit(modalCreateEdit ,bird)" >
           <i class="fa fa-edit" ></i>Edit
         </button>
-        <button class="btn btn-sm btn-danger"   >
+        <button class="btn btn-sm btn-danger" (click)="openDelete(deleteBirds , bird)">
           <i class="fa fa-remove" ></i>Delete
         </button>
-        </span>
+        </div>
         </td>
       </tr>
       </tbody>
     </table>
 
   </div>
-</div>
+
+
+<!-- Modal Create & Edit -->
+<ng-template #modalCreateEdit let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ model.id ? 'Edit Bird' : 'New Bird' }}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <form (ngSubmit)="create()" novalidate>
+    <div class="modal-body">
+      <div class="form-group mt-2">
+        <label>Name</label>
+        <div class="input-group">
+          <input id="name" name="name" class="form-control mb-1" [(ngModel)]="model.name" required>
+        </div>
+
+        <label>Description</label>
+        <textarea id="description" name="description" class="form-control mb-3" [(ngModel)]="model.description" required></textarea>
+
+        <label>Family</label>
+        <input id="family" name="family" class="form-control mb-1" [(ngModel)]="model.family" required>
+
+        <label>Height cm </label>
+        <input id="height_cm" name="height_cm" class="form-control mb-1" [(ngModel)]="model.height_cm" required>
+
+        <label>Weight kg </label>
+        <input id="weight_kg" name="weight_kg" class="form-control mb-1" [(ngModel)]="model.weight_kg" required>
+
+        <label>Species </label>
+        <input id="species" name="species" class="form-control mb-1" [(ngModel)]="model.species" required>
+
+        <label>Habitat </label>
+        <input id="habitat" name="habitat" class="form-control mb-1" [(ngModel)]="model.habitat" required>
+
+        <label>Place_of_found </label>
+        <input id="place_of_found" name="place_of_found" class="form-control mb-1" [(ngModel)]="model.place_of_found" required>
+      </div>
+      <div class="form-group mt-1">
+        <label>Image Product</label>
+        <input type="file" (change)="setImage($event, model)" class="form-control-file" id="image">
+        <div *ngIf="model && model.imageName">Actual image: {{model.imageName}}</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">Close</button>
+      <button type="submit" class="btn btn-info">Submit</button>
+    </div>
+  </form>
+</ng-template>
+
+
+<ng-template #deleteBirds let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Confirm Delete</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <h2>Are you sure you want to delete "{{birdsToDelete?.name }}"?</h2>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-danger" (click)="onDelete()">Yes, Delete!</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cancel click')">Cancel</button>
+  </div>
+</ng-template>
+
 

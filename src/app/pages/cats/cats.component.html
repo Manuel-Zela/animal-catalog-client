@@ -15,7 +15,7 @@
   <div class="row">
     <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let cat of cats">
       <div class="card" style="width: 18rem;">
-        <img src="{{cat.image}}" class="card-img-top" alt="{{cat.name}}">
+        <img [src]="environment.apiBaseUrl  + cat.imagePath " class="card-img-top" alt="{{cat.name}}">
         <div class="card-body">
           <h5 class="card-title">{{ cat.name }}</h5>
           <p class="card-text">Origin : {{ cat.origin }}</p>
@@ -35,7 +35,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" >
-          <img [src]="selectedCat?.image" class="img-fluid" alt="{{ selectedCat?.name }}">
+          <img [src]="environment.apiBaseUrl  + selectedCat.imagePath " class="img-fluid" alt="{{ selectedCat?.name }}">
         <p><strong>Name : </strong>{{selectedCat?.name}}</p>
         <p><strong>Origin:</strong> {{ selectedCat?.origin }}</p>
         <p><strong>Temperament : </strong>{{ selectedCat?.temperament }}</p>

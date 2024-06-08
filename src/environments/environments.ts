@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
-  apiBaseUrl: 'https://freetestapi.com/api/'
+  production: false,
+  apiBaseUrl: 'http://localhost:8080'
 };

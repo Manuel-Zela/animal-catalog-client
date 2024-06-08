@@ -1,5 +1,4 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import { AnimalService } from "../../../services/animal.service";
 import { Dogs } from "../../../models/dogs";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import {NgForOf} from "@angular/common";
@@ -8,6 +7,9 @@ import {TabsetComponent, TabsModule} from "ngx-bootstrap/tabs";
 import {Cats} from "../../../models/cats";
 import {Birds} from "../../../models/birds";
 import {CarouselModule} from "ngx-bootstrap/carousel";
+import {BirdsService} from "../../../services/birds.service";
+import {CatsService} from "../../../services/cats.service";
+import {DogsService} from "../../../services/dogs.service";
 
 
 @Component({
@@ -31,7 +33,9 @@ export class AnimalComponent implements OnInit {
   @ViewChild('staticTabs', { static: false }) staticTabs?: TabsetComponent;
 
   constructor(
-    private animalService: AnimalService,
+    private birdsService:BirdsService,
+    private catsService:CatsService,
+    private dogsService:DogsService,
     private fb: FormBuilder,
 
   ) {
@@ -47,13 +51,13 @@ export class AnimalComponent implements OnInit {
   }
 
   initList() {
-    this.get1Dogs();
-    this.get1Cats();
-    this.get1Birds();
+    this.getDogsLimit();
+    this.getCatsLimit();
+    this.getBirdsLimit();
   }
 
-  get1Dogs() {
-    this.animalService.get1Dogs().subscribe({
+  getDogsLimit() {
+    this.dogsService.getDogsLimit().subscribe({
       next: response => {
         this.dogs = response;
       },
@@ -63,8 +67,8 @@ export class AnimalComponent implements OnInit {
     });
   }
 
-  get1Cats() {
-    this.animalService.get1Cats().subscribe({
+  getCatsLimit() {
+    this.catsService.getCatsLimit().subscribe({
       next: response => {
         this.cats = response;
       },
@@ -75,8 +79,8 @@ export class AnimalComponent implements OnInit {
   }
 
 
-  get1Birds() {
-    this.animalService.get1Birds().subscribe({
+  getBirdsLimit() {
+    this.birdsService.getBirdsLimit().subscribe({
       next: response => {
         this.birds = response;
       },

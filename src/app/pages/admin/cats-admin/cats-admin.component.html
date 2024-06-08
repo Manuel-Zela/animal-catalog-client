@@ -2,8 +2,8 @@
   <section class="border p-4 mb-4 d-flex flex-column">
     <div class="w-100 d-flex justify-content-between align-items-center">
       <span class="fs-3">Cats</span>
-      <button class="btn btn-md btn-outline-primary" >
-        <i class="fa fa-plus-square" ></i>New Cat
+      <button class="btn btn-md btn-outline-primary" (click)="openCreateEdit(modalCreateEdit, emptyModel)">
+        <i class="fa fa-plus-square"></i> New Cat
       </button>
       <form class="d-flex" [formGroup]="searchform">
         <div class="input-group">
@@ -14,7 +14,6 @@
     </div>
   </section>
 
-  <div class="row">
     <table class="table table-bordered table-striped">
       <thead>
       <tr>
@@ -33,23 +32,81 @@
         <td><span>{{ cats.id }}</span></td>
         <td><span>{{ cats.name }}</span></td>
         <td><span>{{ cats.description }}</span></td>
-        <td><img style="width: 3rem;" [src]="cats.image"/></td>
+        <td><img style="width: 3rem;" [src]="environment.apiBaseUrl  + cats.imagePath "></td>
         <td><span>{{ cats.origin }}</span></td>
         <td><span>{{cats.temperament}}</span></td>
         <td><span>{{cats.colors}}</span></td>
 
-        <td><span>
-        <button class="btn btn-sm btn-warning" >
-          <i class="fa fa-edit" ></i>Edit
+        <td>
+          <div class="btn-group">
+        <button class="btn btn-sm btn-warning me-2" >
+          <i class="fa fa-edit" (click)="openCreateEdit(modalCreateEdit, cats)"></i>Edit
         </button>
-        <button class="btn btn-sm btn-danger"   >
+        <button class="btn btn-sm btn-danger" (click)="openDelete(deleteCats ,cats)"  >
           <i class="fa fa-remove" ></i>Delete
         </button>
-        </span>
+        </div>
         </td>
       </tr>
       </tbody>
     </table>
 
   </div>
-</div>
+
+<!-- Modal Create & Edit -->
+<ng-template #modalCreateEdit let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ model.id ? 'Edit Cat' : 'New Cat' }}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <form (ngSubmit)="create()" novalidate>
+    <div class="modal-body">
+      <div class="form-group mt-2">
+        <label>Name</label>
+        <div class="input-group">
+          <input id="name" name="name" class="form-control mb-1" [(ngModel)]="model.name" required>
+        </div>
+
+        <label>Origin</label>
+        <input id="origin" name="origin" class="form-control mb-1" [(ngModel)]="model.origin" required>
+
+        <label>Temperament</label>
+        <input id="temperament" name="temperament" class="form-control mb-1" [(ngModel)]="model.temperament" required>
+
+        <label>Colors</label>
+        <input id="colors" name="colors" class="form-control mb-1" [(ngModel)]="model.colors" required>
+      </div>
+      <div class="form-group mt-1">
+        <label>Description</label>
+        <textarea class="form-control mb-3" name="description" id="description" rows="3" [(ngModel)]="model.description" required></textarea>
+      </div>
+      <div class="form-group mt-1">
+        <label>Image Product</label>
+        <input type="file" (change)="setImage($event, model)" class="form-control-file" id="image">
+        <div *ngIf="model && model.imageName">Actual image: {{model.imageName}}</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">Close</button>
+      <button type="submit" class="btn btn-info">Submit</button>
+    </div>
+  </form>
+</ng-template>
+
+
+<ng-template #deleteCats let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Confirm Delete</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <h2>Are you sure you want to delete "{{ catsToDelete?.name }}"?</h2>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-danger" (click)="onDelete()">Yes, Delete!</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cancel click')">Cancel</button>
+  </div>
+</ng-template>
+
+
+

@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let dog of dogs">
         <div class="card" style="width: 18rem;">
-          <img src="{{dog.image}}" class="card-img-top" alt="{{dog.name}}">
+          <img [src]="environment.apiBaseUrl  + dog.imagePath " class="card-img-top" >
           <div class="card-body">
             <h5 class="card-title">{{ dog.name }}</h5>
             <p class="card-text">Origin : {{ dog.origin }}</p>
@@ -38,7 +38,7 @@
     <div class="row">
       <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let cat of cats">
         <div class="card" style="width: 18rem;">
-          <img src="{{cat.image}}" class="card-img-top" alt="{{cat.name}}">
+          <img [src]="environment.apiBaseUrl  + cat.imagePath " class="card-img-top" >
           <div class="card-body">
             <h5 class="card-title">{{ cat.name }}</h5>
             <p class="card-text">Origin : {{ cat.origin }}</p>
@@ -64,7 +64,7 @@
     <div class="row">
       <div class="col-sm-8 col-md-7 col-lg-3 mb-4" *ngFor="let bird of birds">
         <div class="card" style="width: 18rem;">
-          <img src="{{bird.image}}" class="card-img-top" alt="{{bird.name}}">
+          <img [src]="environment.apiBaseUrl  + bird.imagePath " class="card-img-top" >
           <div class="card-body">
             <h5 class="card-title">{{ bird.name }}</h5>
             <p class="card-text">Place of found : {{ bird.place_of_found }}</p>

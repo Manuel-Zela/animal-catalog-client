@@ -18,7 +18,7 @@
   <div class="row">
     <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let dog of dogs">
       <div class="card" style="width: 18rem;">
-        <img [src]="dog.image" class="card-img-top" alt="{{dog.name}}">
+        <img [src]="environment.apiBaseUrl  + dog.imagePath " class="card-img-top" alt="{{dog.name}}">
         <div class="card-body">
           <h5 class="card-title">{{ dog.name }}</h5>
           <p class="card-text">Origin: {{ dog.origin }}</p>
@@ -37,7 +37,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body" >
-          <img [src]="selectedDog?.image" class="img-fluid" alt="{{ selectedDog?.name }}">
+          <img [src]="environment.apiBaseUrl  + selectedDog.imagePath " class="img-fluid" alt="{{ selectedDog?.name }}">
           <p><strong>Name : </strong>{{selectedDog?.name}}</p>
           <p><strong>Breed group : </strong>{{selectedDog?.breed_group}}</p>
           <p><strong>Origin:</strong> {{ selectedDog?.origin }}</p>
